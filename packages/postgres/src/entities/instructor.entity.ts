@@ -1,4 +1,12 @@
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  UpdateDateColumn,
+} from 'typeorm';
 import { User } from './user.entity';
 
 /**
@@ -47,32 +55,32 @@ export class Instructor {
   public rating: number | null;
 
   /**
-   * COLUMN-DESCRIPTION: Timestamp when the instructor record was created
+   * COLUMN-DESCRIPTION: Timestamp when the instructor record was created (automatically managed by TypeORM)
    */
-  @Column({
+  @CreateDateColumn({
     type: 'timestamptz',
-    default: () => 'now()',
+    default: () => 'CURRENT_TIMESTAMP(6)',
     name: 'created_at',
   })
   public createdAt: Date;
 
   /**
-   * COLUMN-DESCRIPTION: Timestamp when the instructor record was last updated
+   * COLUMN-DESCRIPTION: Timestamp when the instructor record was last updated (automatically managed by TypeORM)
    */
-  @Column({
+  @UpdateDateColumn({
     type: 'timestamptz',
-    default: () => 'now()',
+    default: () => 'CURRENT_TIMESTAMP(6)',
+    onUpdate: 'CURRENT_TIMESTAMP(6)',
     name: 'updated_at',
   })
   public updatedAt: Date;
 
   /**
-   * COLUMN-DESCRIPTION: Timestamp for soft delete functionality, null if not deleted
+   * COLUMN-DESCRIPTION: Timestamp for soft delete functionality, null if not deleted (automatically managed by TypeORM)
    */
-  @Column({
+  @DeleteDateColumn({
     type: 'timestamptz',
-    nullable: true,
-    default: null,
+    default: () => 'null',
     name: 'deleted_at',
   })
   public deletedAt: Date | null;
