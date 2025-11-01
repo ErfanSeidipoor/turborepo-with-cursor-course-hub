@@ -10,3 +10,4 @@
   - Helper utilities available (DatabaseCreateTable, DatabaseCreateForeignKey, etc.)
 - This step ensures you follow all monorepo standards and use the correct patterns when implementing migrations and entities.
 - If you don't read this file first, your implementation may not comply with project standards and will require revision.
+- read that file first, no matter what. Don't rely on glob searches alone; use direct path
