@@ -1,4 +1,4 @@
-5. SUBTASK-5: Implement up and down methods
+6. SUBTASK-06: Implement up and down methods
 
 - Open the generated file under `packages/postgres/src/migrations/` and implement both `up` and `down` using TypeORM’s `QueryRunner`.
 - Follow the guidance from @postgres.mdc:

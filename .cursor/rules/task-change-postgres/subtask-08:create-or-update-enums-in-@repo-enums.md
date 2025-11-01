@@ -1,4 +1,4 @@
-7. SUBTASK-7: Create or update enums in @repo/enums (when enum fields are involved)
+8. SUBTASK-08: Create or update enums in @repo/enums (when enum fields are involved)
 
 - If the change introduces or modifies an enum field at the DB level:
   - Define the corresponding TypeScript enum under `packages/enums/src/` following the @enums.mdc rule.

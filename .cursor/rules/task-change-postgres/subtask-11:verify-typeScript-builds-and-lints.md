@@ -1,4 +1,4 @@
-10. SUBTASK-10: Verify TypeScript builds and lints
+11. SUBTASK-11: Verify TypeScript builds and lints
 
 - Ensure no TypeScript or linter errors due to entity or enum updates:
 

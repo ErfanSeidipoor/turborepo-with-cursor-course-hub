@@ -1,4 +1,4 @@
-3. SUBTASK-3: Review previous migrations for conflicts
+4. SUBTASK-04: Review previous migrations for conflicts
 
 - Before implementing the migration, review all existing migration files in `packages/postgres/src/migrations/`.
 - Identify all previous changes affecting the target tables and columns described in `TASK_DESCRIPTION`.

@@ -1,4 +1,4 @@
-4. SUBTASK-4: Create a migration file
+5. SUBTASK-05: Create a migration file
 
 - Create a descriptive migration using the workspace scripts (ref. @postgres.mdc Migration Commands Reference).
 

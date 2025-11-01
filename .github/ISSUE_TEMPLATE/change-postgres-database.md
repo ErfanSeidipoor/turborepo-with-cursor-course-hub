@@ -51,22 +51,23 @@ This task must strictly follow the subtasks defined in the `@task-change-postgre
 > **IMPORTANT:**  
 > Completing _every_ subtask in this list is required. Cursor rule enforcement will be checked during review.
 >
-> - If the rule-defined subtasks (1–13) are not fully implemented in sequence **without unauthorized deviation**, your PR will be rejected or require revision.
+> - If the rule-defined subtasks (1–14) are not fully implemented in sequence **without unauthorized deviation**, your PR will be rejected or require revision.
 
 - [ ] SUBTASK-00: .cursor/rules/task-change-postgres/subtask-00:description-and-requirement.md
 - [ ] SUBTASK-01: .cursor/rules/task-change-postgres/subtask-01:create-a-new-feature-branch-from-main.md
 - [ ] SUBTASK-02: .cursor/rules/task-change-postgres/subtask-02:validate-inputs-and-prepare-workspace.md
-- [ ] SUBTASK-03: .cursor/rules/task-change-postgres/subtask-03:review-previous-migrations-for-conflicts.md
-- [ ] SUBTASK-04: .cursor/rules/task-change-postgres/subtask-04:create-a-migration-file.md
-- [ ] SUBTASK-05: .cursor/rules/task-change-postgres/subtask-05:implement-up-and-down-methods.md
-- [ ] SUBTASK-06: .cursor/rules/task-change-postgres/subtask-06:test-run-and-revert-twice.md
-- [ ] SUBTASK-07: .cursor/rules/task-change-postgres/subtask-07:create-or-update-enums-in-@repo-enums.md
-- [ ] SUBTASK-08: .cursor/rules/task-change-postgres/subtask-08:update-entities-under-packages-postgres-src-entities.md
-- [ ] SUBTASK-09: .cursor/rules/task-change-postgres/subtask-09:ensure-entity-documentation-is-up-to-date.md
-- [ ] SUBTASK-10: .cursor/rules/task-change-postgres/subtask-10:verify-typeScript-builds-and-lints.md
-- [ ] SUBTASK-11: .cursor/rules/task-change-postgres/subtask-11:final-readiness-check.md
-- [ ] SUBTASK-12: .cursor/rules/task-change-postgres/subtask-12:general-rule-compliance.md
-- [ ] SUBTASK-13: .cursor/rules/task-change-postgres/subtask-13:create-a-pull-request.md
+- [ ] SUBTASK-03: .cursor/rules/task-change-postgres/subtask-03:read-postgres-rules.md
+- [ ] SUBTASK-04: .cursor/rules/task-change-postgres/subtask-04:review-previous-migrations-for-conflicts.md
+- [ ] SUBTASK-05: .cursor/rules/task-change-postgres/subtask-05:create-a-migration-file.md
+- [ ] SUBTASK-06: .cursor/rules/task-change-postgres/subtask-06:implement-up-and-down-methods.md
+- [ ] SUBTASK-07: .cursor/rules/task-change-postgres/subtask-07:test-run-and-revert-twice.md
+- [ ] SUBTASK-08: .cursor/rules/task-change-postgres/subtask-08:create-or-update-enums-in-@repo-enums.md
+- [ ] SUBTASK-09: .cursor/rules/task-change-postgres/subtask-09:update-entities-under-packages-postgres-src-entities.md
+- [ ] SUBTASK-10: .cursor/rules/task-change-postgres/subtask-10:ensure-entity-documentation-is-up-to-date.md
+- [ ] SUBTASK-11: .cursor/rules/task-change-postgres/subtask-11:verify-typeScript-builds-and-lints.md
+- [ ] SUBTASK-12: .cursor/rules/task-change-postgres/subtask-12:final-readiness-check.md
+- [ ] SUBTASK-13: .cursor/rules/task-change-postgres/subtask-13:general-rule-compliance.md
+- [ ] SUBTASK-14: .cursor/rules/task-change-postgres/subtask-14:create-a-pull-request.md
 
 ## ⚠️ STRICT SCOPE ENFORCEMENT
 

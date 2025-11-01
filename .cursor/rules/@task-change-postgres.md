@@ -41,46 +41,50 @@ The following subtasks must be implemented to deliver a compliant and reversible
 
 - .cursor/rules/task-change-postgres/subtask-02:validate-inputs-and-prepare-workspace.md
 
-3. SUBTASK-3: Review previous migrations for conflicts
+3. SUBTASK-3: Read Postgres Rules
 
-- .cursor/rules/task-change-postgres/subtask-03:review-previous-migrations-for-conflicts.md
+- .cursor/rules/task-change-postgres/subtask-03:read-postgres-rules.md
 
-4. SUBTASK-4: Create a migration file
+4. SUBTASK-4: Review previous migrations for conflicts
 
-- .cursor/rules/task-change-postgres/subtask-04:create-a-migration-file.md
+- .cursor/rules/task-change-postgres/subtask-04:review-previous-migrations-for-conflicts.md
 
-5. SUBTASK-5: Implement up and down methods
+5. SUBTASK-5: Create a migration file
 
-- .cursor/rules/task-change-postgres/subtask-05:implement-up-and-down-methods.md
+- .cursor/rules/task-change-postgres/subtask-05:create-a-migration-file.md
 
-6. SUBTASK-6: Test run and revert twice
+6. SUBTASK-6: Implement up and down methods
 
-- .cursor/rules/task-change-postgres/subtask-06:test-run-and-revert-twice.md
+- .cursor/rules/task-change-postgres/subtask-06:implement-up-and-down-methods.md
 
-7. SUBTASK-7: Create or update enums in @repo/enums (when enum fields are involved)
+7. SUBTASK-7: Test run and revert twice
 
-- .cursor/rules/task-change-postgres/subtask-07:create-or-update-enums-in-@repo-enums.md
+- .cursor/rules/task-change-postgres/subtask-07:test-run-and-revert-twice.md
 
-8. SUBTASK-8: Update entities under packages/postgres/src/entities
+8. SUBTASK-8: Create or update enums in @repo/enums (when enum fields are involved)
 
-- .cursor/rules/task-change-postgres/subtask-08:update-entities-under-packages-postgres-src-entities.md
+- .cursor/rules/task-change-postgres/subtask-08:create-or-update-enums-in-@repo-enums.md
 
-9. SUBTASK-9: Ensure entity documentation is up-to-date
+9. SUBTASK-9: Update entities under packages/postgres/src/entities
 
-- .cursor/rules/task-change-postgres/subtask-09:ensure-entity-documentation-is-up-to-date.md
+- .cursor/rules/task-change-postgres/subtask-09:update-entities-under-packages-postgres-src-entities.md
 
-10. SUBTASK-10: Verify TypeScript builds and lints
+10. SUBTASK-10: Ensure entity documentation is up-to-date
 
-- .cursor/rules/task-change-postgres/subtask-10:verify-typeScript-builds-and-lints.md
+- .cursor/rules/task-change-postgres/subtask-10:ensure-entity-documentation-is-up-to-date.md
 
-11. SUBTASK-11: Final readiness check
+11. SUBTASK-11: Verify TypeScript builds and lints
 
-- .cursor/rules/task-change-postgres/subtask-11:final-readiness-check.md
+- .cursor/rules/task-change-postgres/subtask-11:verify-typeScript-builds-and-lints.md
 
-12. SUBTASK-12: General Rule Compliance
+12. SUBTASK-12: Final readiness check
 
-- .cursor/rules/task-change-postgres/subtask-12:general-rule-compliance.md
+- .cursor/rules/task-change-postgres/subtask-12:final-readiness-check.md
 
-13. SUBTASK-13: Create a Pull Request (PR)
+13. SUBTASK-13: General Rule Compliance
 
-- .cursor/rules/task-change-postgres/subtask-13:create-a-pull-request.md
+- .cursor/rules/task-change-postgres/subtask-13:general-rule-compliance.md
+
+14. SUBTASK-14: Create a Pull Request (PR)
+
+- .cursor/rules/task-change-postgres/subtask-14:create-a-pull-request.md

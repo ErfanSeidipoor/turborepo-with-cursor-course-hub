@@ -1,4 +1,4 @@
-11. SUBTASK-11: Final readiness check
+12. SUBTASK-12: Final readiness check
 
 - Confirm the migration applies cleanly and reverts cleanly:
   - Apply once: `npm run migration:run`

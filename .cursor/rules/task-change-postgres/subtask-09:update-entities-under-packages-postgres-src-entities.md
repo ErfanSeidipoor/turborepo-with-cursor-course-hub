@@ -1,4 +1,4 @@
-8. SUBTASK-8: Update entities under packages/postgres/src/entities
+9. SUBTASK-09: Update entities under packages/postgres/src/entities
 
 - Reflect the schema changes in entity classes (see @postgres.mdc Entity Definition Checklist):
   - Ensure table name is explicit via `@Entity('table_name')`.
