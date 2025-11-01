@@ -1,4 +1,4 @@
-6. SUBTASK-6: Test run and revert twice
+7. SUBTASK-07: Test run and revert twice
 
 - From `packages/postgres`, run migrations and then revert, twice, to confirm reversibility and idempotency (ref. @postgres.mdc):
 
