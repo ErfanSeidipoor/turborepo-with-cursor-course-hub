@@ -9,7 +9,7 @@ The following tables form the relational core of the application:
 **Key Fields:**
 
 - `id` (Primary Key): UUID
-- `email`: VARCHAR(255)
+- `username`: VARCHAR(255)
 - `password`: VARCHAR(255)
 
 ---
