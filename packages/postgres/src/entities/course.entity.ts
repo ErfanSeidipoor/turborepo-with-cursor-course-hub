@@ -1,6 +1,8 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { CoursesStatusEnum } from '@repo/enums';
 import { BaseEntity } from './base.entity';
+import { CourseReview } from './course-review.entity';
+import { Enrollment } from './enrollment.entity';
 import { Instructor } from './instructor.entity';
 import { Section } from './section.entity';
 
@@ -14,6 +16,8 @@ import { Section } from './section.entity';
  * TABLE-RELATIONSHIPS:
  *   - Many-to-one relationship with Instructor (instructor_id references instructors.id)
  *   - One-to-many relationship with Section (sections reference this course)
+ *   - One-to-many relationship with Enrollment (enrollments reference this course)
+ *   - One-to-many relationship with CourseReview (course reviews reference this course)
  */
 @Entity('courses')
 export class Course extends BaseEntity {
@@ -75,4 +79,22 @@ export class Course extends BaseEntity {
     eager: false,
   })
   public sections: Section[];
+
+  /**
+   * RELATIONSHIP: One-to-many relationship with Enrollment entity
+   */
+  @OneToMany(() => Enrollment, (enrollment) => enrollment.course, {
+    cascade: false,
+    eager: false,
+  })
+  public enrollments: Enrollment[];
+
+  /**
+   * RELATIONSHIP: One-to-many relationship with CourseReview entity
+   */
+  @OneToMany(() => CourseReview, (courseReview) => courseReview.course, {
+    cascade: false,
+    eager: false,
+  })
+  public courseReviews: CourseReview[];
 }

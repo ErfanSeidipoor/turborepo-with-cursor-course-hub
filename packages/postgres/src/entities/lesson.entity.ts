@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from './base.entity';
+import { Progress } from './progress.entity';
 import { Section } from './section.entity';
 
 /**
@@ -10,6 +11,7 @@ import { Section } from './section.entity';
  *   - inherits id (UUID), createdAt, updatedAt, and deletedAt from BaseEntity
  * TABLE-RELATIONSHIPS:
  *   - Many-to-one relationship with Section (section_id references sections.id)
+ *   - One-to-many relationship with Progress (progress records reference this lesson)
  */
 @Entity('lessons')
 export class Lesson extends BaseEntity {
@@ -52,4 +54,13 @@ export class Lesson extends BaseEntity {
   })
   @JoinColumn({ name: 'section_id' })
   public section: Section;
+
+  /**
+   * RELATIONSHIP: One-to-many relationship with Progress entity
+   */
+  @OneToMany(() => Progress, (progress) => progress.lesson, {
+    cascade: false,
+    eager: false,
+  })
+  public progress: Progress[];
 }
