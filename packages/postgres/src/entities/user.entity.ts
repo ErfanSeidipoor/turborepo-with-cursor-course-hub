@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToOne } from 'typeorm';
 import { BaseEntity } from './base.entity';
+import { Instructor } from './instructor.entity';
 
 /**
  * TABLE-NAME: users
@@ -9,7 +10,7 @@ import { BaseEntity } from './base.entity';
  *   - password is excluded from default queries (select: false)
  *   - inherits id (UUID), createdAt, and updatedAt from BaseEntity
  * TABLE-RELATIONSHIPS:
- *   - Base entity for user-related entities (children, activities, etc.)
+ *   - One-to-one relationship with Instructor (optional, when user has instructor privileges)
  */
 @Entity('users')
 export class User extends BaseEntity {
@@ -34,4 +35,10 @@ export class User extends BaseEntity {
     select: false,
   })
   public password: string;
+
+  /**
+   * RELATIONSHIP: One-to-one relationship with Instructor entity (inverse side)
+   */
+  @OneToOne(() => Instructor, (instructor) => instructor.user)
+  public instructor?: Instructor;
 }
