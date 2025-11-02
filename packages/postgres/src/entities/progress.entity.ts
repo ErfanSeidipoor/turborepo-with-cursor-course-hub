@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { Enrollment } from './enrollment.entity';
 import { Lesson } from './lesson.entity';
@@ -7,35 +7,28 @@ import { Lesson } from './lesson.entity';
  * TABLE-NAME: progress
  * TABLE-DESCRIPTION: Tracks a student's completion status for each lesson within an enrollment
  * TABLE-IMPORTANT-CONSTRAINTS:
- *   - Composite foreign key (user_id, course_id) references enrollments
+ *   - enrollment_id must reference a valid enrollment (foreign key to enrollments.id)
  *   - lesson_id must reference a valid lesson (foreign key to lessons.id)
- *   - Unique constraint on (user_id, course_id, lesson_id) to prevent duplicate progress records
+ *   - Unique constraint on (enrollment_id, lesson_id) to prevent duplicate progress records
  *   - inherits id (UUID), createdAt, updatedAt, and deletedAt from BaseEntity
  * TABLE-RELATIONSHIPS:
- *   - Many-to-one relationship with Enrollment (user_id, course_id references enrollments)
+ *   - Many-to-one relationship with Enrollment (enrollment_id references enrollments.id)
  *   - Many-to-one relationship with Lesson (lesson_id references lessons.id)
  */
 @Entity('progress')
+@Index('IDX_PROGRESS_ENROLLMENT_LESSON', ['enrollmentId', 'lessonId'], {
+  unique: true,
+})
 export class Progress extends BaseEntity {
   /**
-   * COLUMN-DESCRIPTION: Foreign key referencing the user (part of composite FK to enrollments)
+   * COLUMN-DESCRIPTION: Foreign key referencing the enrollment
    */
   @Column({
     type: 'uuid',
-    name: 'user_id',
+    name: 'enrollment_id',
     nullable: false,
   })
-  public userId: string;
-
-  /**
-   * COLUMN-DESCRIPTION: Foreign key referencing the course (part of composite FK to enrollments)
-   */
-  @Column({
-    type: 'uuid',
-    name: 'course_id',
-    nullable: false,
-  })
-  public courseId: string;
+  public enrollmentId: string;
 
   /**
    * COLUMN-DESCRIPTION: Foreign key referencing the lesson being tracked
@@ -70,15 +63,12 @@ export class Progress extends BaseEntity {
   public lastWatchedTime: number;
 
   /**
-   * RELATIONSHIP: Many-to-one relationship with Enrollment entity (composite foreign key)
+   * RELATIONSHIP: Many-to-one relationship with Enrollment entity
    */
   @ManyToOne(() => Enrollment, (enrollment) => enrollment.progress, {
     onDelete: 'CASCADE',
   })
-  @JoinColumn([
-    { name: 'user_id', referencedColumnName: 'userId' },
-    { name: 'course_id', referencedColumnName: 'courseId' },
-  ])
+  @JoinColumn({ name: 'enrollment_id' })
   public enrollment: Enrollment;
 
   /**

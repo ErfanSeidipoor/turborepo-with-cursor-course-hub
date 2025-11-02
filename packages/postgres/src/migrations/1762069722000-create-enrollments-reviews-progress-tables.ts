@@ -1,10 +1,4 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-  TableIndex,
-} from 'typeorm';
+import { MigrationInterface, QueryRunner, TableIndex } from 'typeorm';
 import {
   DatabaseCreateTable,
   DatabaseCreateForeignKey,
@@ -15,58 +9,43 @@ export class CreateEnrollmentsReviewsProgressTables1762069722000
   implements MigrationInterface
 {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    // Create enrollments table with composite primary key
-    await queryRunner.createTable(
-      new Table({
-        name: 'enrollments',
-        columns: [
-          {
-            name: 'user_id',
-            type: 'uuid',
-            isNullable: false,
-          },
-          {
-            name: 'course_id',
-            type: 'uuid',
-            isNullable: false,
-          },
-          {
-            name: 'enrollment_date',
-            type: 'timestamptz',
-            default: 'now()',
-            isNullable: false,
-          },
-          {
-            name: 'completion_status',
-            type: 'numeric',
-            precision: 5,
-            scale: 2,
-            default: 0,
-            isNullable: false,
-          },
-          {
-            name: 'created_at',
-            type: 'timestamptz',
-            default: 'now()',
-          },
-          {
-            name: 'updated_at',
-            type: 'timestamptz',
-            default: 'now()',
-          },
-          {
-            name: 'deleted_at',
-            type: 'timestamptz',
-            isNullable: true,
-            default: null,
-          },
-        ],
-      }),
-      true,
-    );
+    // Create enrollments table
+    await DatabaseCreateTable(queryRunner, 'enrollments', [
+      {
+        name: 'user_id',
+        type: 'uuid',
+        isNullable: false,
+      },
+      {
+        name: 'course_id',
+        type: 'uuid',
+        isNullable: false,
+      },
+      {
+        name: 'enrollment_date',
+        type: 'timestamptz',
+        default: 'now()',
+        isNullable: false,
+      },
+      {
+        name: 'completion_status',
+        type: 'numeric',
+        precision: 5,
+        scale: 2,
+        default: 0,
+        isNullable: false,
+      },
+    ]);
 
-    // Create composite primary key on enrollments
-    await queryRunner.createPrimaryKey('enrollments', ['user_id', 'course_id']);
+    // Create unique constraint on (user_id, course_id) to ensure one enrollment per user per course
+    await queryRunner.createIndex(
+      'enrollments',
+      new TableIndex({
+        name: 'IDX_ENROLLMENT_USER_COURSE',
+        columnNames: ['user_id', 'course_id'],
+        isUnique: true,
+      }),
+    );
 
     // Create foreign keys for enrollments table
     await DatabaseCreateForeignKey(
@@ -123,12 +102,7 @@ export class CreateEnrollmentsReviewsProgressTables1762069722000
     // Create progress table
     await DatabaseCreateTable(queryRunner, 'progress', [
       {
-        name: 'user_id',
-        type: 'uuid',
-        isNullable: false,
-      },
-      {
-        name: 'course_id',
+        name: 'enrollment_id',
         type: 'uuid',
         isNullable: false,
       },
@@ -151,15 +125,12 @@ export class CreateEnrollmentsReviewsProgressTables1762069722000
       },
     ]);
 
-    // Create foreign key for progress table referencing enrollments (composite key)
-    await queryRunner.createForeignKey(
+    // Create foreign key from progress to enrollments
+    await DatabaseCreateForeignKey(
+      queryRunner,
       'progress',
-      new TableForeignKey({
-        columnNames: ['user_id', 'course_id'],
-        referencedTableName: 'enrollments',
-        referencedColumnNames: ['user_id', 'course_id'],
-        onDelete: 'CASCADE',
-      }),
+      'enrollments',
+      'enrollment_id',
     );
 
     // Create foreign key from progress to lessons
@@ -175,7 +146,7 @@ export class CreateEnrollmentsReviewsProgressTables1762069722000
       'progress',
       new TableIndex({
         name: 'IDX_PROGRESS_ENROLLMENT_LESSON',
-        columnNames: ['user_id', 'course_id', 'lesson_id'],
+        columnNames: ['enrollment_id', 'lesson_id'],
         isUnique: true,
       }),
     );
@@ -192,20 +163,12 @@ export class CreateEnrollmentsReviewsProgressTables1762069722000
       'lessons',
       'lesson_id',
     );
-
-    // Drop composite foreign key from progress to enrollments
-    const progressTable = await queryRunner.getTable('progress');
-    if (progressTable) {
-      const enrollmentFk = progressTable.foreignKeys.find(
-        (fk) =>
-          fk.columnNames.includes('user_id') &&
-          fk.columnNames.includes('course_id') &&
-          fk.referencedTableName === 'enrollments',
-      );
-      if (enrollmentFk) {
-        await queryRunner.dropForeignKey('progress', enrollmentFk);
-      }
-    }
+    await DatabaseDropForeignKey(
+      queryRunner,
+      'progress',
+      'enrollments',
+      'enrollment_id',
+    );
 
     // Drop foreign keys from course_reviews table
     await DatabaseDropForeignKey(
@@ -234,6 +197,9 @@ export class CreateEnrollmentsReviewsProgressTables1762069722000
       'users',
       'user_id',
     );
+
+    // Drop unique index on enrollments
+    await queryRunner.dropIndex('enrollments', 'IDX_ENROLLMENT_USER_COURSE');
 
     // Drop tables (in reverse order of creation)
     await queryRunner.dropTable('progress');

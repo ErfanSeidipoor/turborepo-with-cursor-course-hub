@@ -1,14 +1,12 @@
 import {
   Column,
-  CreateDateColumn,
-  DeleteDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   OneToMany,
-  PrimaryColumn,
-  UpdateDateColumn,
 } from 'typeorm';
+import { BaseEntity } from './base.entity';
 import { Course } from './course.entity';
 import { User } from './user.entity';
 
@@ -16,32 +14,36 @@ import { User } from './user.entity';
  * TABLE-NAME: enrollments
  * TABLE-DESCRIPTION: Records a student's active registration in a course. Serves as a junction table between users and courses.
  * TABLE-IMPORTANT-CONSTRAINTS:
- *   - Composite primary key on (user_id, course_id) ensures one enrollment per user per course
+ *   - Unique constraint on (user_id, course_id) ensures one enrollment per user per course
  *   - user_id must reference a valid user (foreign key to users.id)
  *   - course_id must reference a valid course (foreign key to courses.id)
  *   - completion_status is a percentage (0-100) with 2 decimal places
+ *   - inherits id (UUID), createdAt, updatedAt, and deletedAt from BaseEntity
  * TABLE-RELATIONSHIPS:
  *   - Many-to-one relationship with User (user_id references users.id)
  *   - Many-to-one relationship with Course (course_id references courses.id)
  *   - One-to-many relationship with Progress (progress records reference this enrollment)
  */
 @Entity('enrollments')
-export class Enrollment {
+@Index('IDX_ENROLLMENT_USER_COURSE', ['userId', 'courseId'], { unique: true })
+export class Enrollment extends BaseEntity {
   /**
-   * COLUMN-DESCRIPTION: Foreign key referencing the user who enrolled in the course, part of composite primary key
+   * COLUMN-DESCRIPTION: Foreign key referencing the user who enrolled in the course, part of unique constraint
    */
-  @PrimaryColumn({
+  @Column({
     type: 'uuid',
     name: 'user_id',
+    nullable: false,
   })
   public userId: string;
 
   /**
-   * COLUMN-DESCRIPTION: Foreign key referencing the course the user enrolled in, part of composite primary key
+   * COLUMN-DESCRIPTION: Foreign key referencing the course the user enrolled in, part of unique constraint
    */
-  @PrimaryColumn({
+  @Column({
     type: 'uuid',
     name: 'course_id',
+    nullable: false,
   })
   public courseId: string;
 
@@ -68,37 +70,6 @@ export class Enrollment {
     nullable: false,
   })
   public completionStatus: number;
-
-  /**
-   * COLUMN-DESCRIPTION: Timestamp when the enrollment record was created
-   */
-  @CreateDateColumn({
-    type: 'timestamptz',
-    default: () => 'CURRENT_TIMESTAMP(6)',
-    name: 'created_at',
-  })
-  public createdAt: Date;
-
-  /**
-   * COLUMN-DESCRIPTION: Timestamp when the enrollment record was last updated
-   */
-  @UpdateDateColumn({
-    type: 'timestamptz',
-    default: () => 'CURRENT_TIMESTAMP(6)',
-    onUpdate: 'CURRENT_TIMESTAMP(6)',
-    name: 'updated_at',
-  })
-  public updatedAt: Date;
-
-  /**
-   * COLUMN-DESCRIPTION: Timestamp when the enrollment record was soft deleted, null if not deleted
-   */
-  @DeleteDateColumn({
-    type: 'timestamptz',
-    default: () => `null`,
-    name: 'deleted_at',
-  })
-  public deletedAt: Date | null;
 
   /**
    * RELATIONSHIP: Many-to-one relationship with User entity
