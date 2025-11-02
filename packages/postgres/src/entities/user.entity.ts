@@ -1,5 +1,7 @@
-import { Column, Entity, OneToOne } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne } from 'typeorm';
 import { BaseEntity } from './base.entity';
+import { CourseReview } from './course-review.entity';
+import { Enrollment } from './enrollment.entity';
 import { Instructor } from './instructor.entity';
 
 /**
@@ -11,6 +13,8 @@ import { Instructor } from './instructor.entity';
  *   - inherits id (UUID), createdAt, and updatedAt from BaseEntity
  * TABLE-RELATIONSHIPS:
  *   - One-to-one relationship with Instructor (optional, when user has instructor privileges)
+ *   - One-to-many relationship with Enrollment (enrollments reference this user)
+ *   - One-to-many relationship with CourseReview (course reviews reference this user)
  */
 @Entity('users')
 export class User extends BaseEntity {
@@ -41,4 +45,22 @@ export class User extends BaseEntity {
    */
   @OneToOne(() => Instructor, (instructor) => instructor.user)
   public instructor?: Instructor;
+
+  /**
+   * RELATIONSHIP: One-to-many relationship with Enrollment entity
+   */
+  @OneToMany(() => Enrollment, (enrollment) => enrollment.user, {
+    cascade: false,
+    eager: false,
+  })
+  public enrollments: Enrollment[];
+
+  /**
+   * RELATIONSHIP: One-to-many relationship with CourseReview entity
+   */
+  @OneToMany(() => CourseReview, (courseReview) => courseReview.user, {
+    cascade: false,
+    eager: false,
+  })
+  public courseReviews: CourseReview[];
 }
