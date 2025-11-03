@@ -47,7 +47,7 @@ Handles the entire content lifecycle, from initial draft to publication and deli
 **DOMAIN-GENERAL-ENTITIES:**
 
 - Instructor: Extends user capabilities with instructor privileges, bio, and rating. Required for course creation.
-- Course Categories/Tags: Classification and organization system for courses.
+- User:
 
 **DOMAIN-RULES:**
 
@@ -56,7 +56,7 @@ Handles the entire content lifecycle, from initial draft to publication and deli
 3. Every Section must be linked to a valid, existing Course (course_id Foreign Key).
 4. Every Lesson must be linked to a valid, existing Section (section_id Foreign Key).
 5. order_index fields for sections and lessons must be maintained and unique within their parent entity (course/section) to define playback order.
-6. Content URLs (content_url) must be validated against the configured content hosting service to ensure accessibility.
+6. Content URLs (content_url) must be validated
 
 ---
 
@@ -72,7 +72,8 @@ Tracks the student experience, including course access permission, detailed cons
 
 **DOMAIN-GENERAL-ENTITIES:**
 
-- Certificates: Generated artifact representing course completion.
+- Course
+- User
 
 **DOMAIN-RULES:**
 
@@ -97,6 +98,7 @@ Manages the quality and social aspects of the platform by handling the submissio
 
 - Instructor Rating: Derived metric aggregating instructor performance.
 - Course Rating: Derived metric aggregating course quality feedback.
+- User
 
 **DOMAIN-RULES:**
 
