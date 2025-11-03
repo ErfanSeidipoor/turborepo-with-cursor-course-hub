@@ -60,10 +60,14 @@ The following subtasks must be implemented to deliver a compliant domain service
 
 - .cursor/rules/task-create-or-update-postgres-domain/subtask-07:verify-typeScript-builds-and-lints.md
 
-8. SUBTASK-08: Final readiness check
+8. SUBTASK-08: General Rule Compliance
 
-- .cursor/rules/task-create-or-update-postgres-domain/subtask-08:final-readiness-check.md
+- .cursor/rules/task-create-or-update-postgres-domain/subtask-08:general-rule-compliance.md
 
-9. SUBTASK-09: Create a Pull Request (PR)
+9. SUBTASK-09: Final readiness check
+
+- .cursor/rules/task-create-or-update-postgres-domain/subtask-09:final-readiness-check.md
+
+10. SUBTASK-010: Create a Pull Request (PR)
 
 - .cursor/rules/task-create-or-update-postgres-domain/subtask-09:create-a-pull-request.md

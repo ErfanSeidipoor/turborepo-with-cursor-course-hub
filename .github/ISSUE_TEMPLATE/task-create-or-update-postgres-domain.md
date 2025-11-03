@@ -53,7 +53,7 @@ This task must strictly follow the subtasks defined in the `@task-create-or-upda
 > **IMPORTANT:**  
 > Completing _every_ subtask in this list is required. Cursor rule enforcement will be checked during review.
 >
-> - If the rule-defined subtasks (0–9) are not fully implemented in sequence **without unauthorized deviation**, your PR will be rejected or require revision.
+> - If the rule-defined subtasks (0–10) are not fully implemented in sequence **without unauthorized deviation**, your PR will be rejected or require revision.
 
 - [ ] SUBTASK-00: .cursor/rules/task-create-or-update-postgres-domain/subtask-00:description-and-requirement.md
 - [ ] SUBTASK-01: .cursor/rules/task-create-or-update-postgres-domain/subtask-01:check-the-requirements-to-implement-this-task.md
@@ -63,8 +63,9 @@ This task must strictly follow the subtasks defined in the `@task-create-or-upda
 - [ ] SUBTASK-05: .cursor/rules/task-create-or-update-postgres-domain/subtask-05:write-unit-test-for-domain.md
 - [ ] SUBTASK-06: .cursor/rules/task-create-or-update-postgres-domain/subtask-06:general-rule-compliance.md
 - [ ] SUBTASK-07: .cursor/rules/task-create-or-update-postgres-domain/subtask-07:verify-typeScript-builds-and-lints.md
-- [ ] SUBTASK-08: .cursor/rules/task-create-or-update-postgres-domain/subtask-08:final-readiness-check.md
-- [ ] SUBTASK-09: .cursor/rules/task-create-or-update-postgres-domain/subtask-09:create-a-pull-request.md
+- [ ] SUBTASK-08: .cursor/rules/task-create-or-update-postgres-domain/subtask-08:general-rule-compliance.md
+- [ ] SUBTASK-09: .cursor/rules/task-create-or-update-postgres-domain/subtask-09:final-readiness-check.md
+- [ ] SUBTASK-10: .cursor/rules/task-create-or-update-postgres-domain/subtask-09:create-a-pull-request.md
 
 ## ⚠️ STRICT SCOPE ENFORCEMENT
 
@@ -76,18 +77,6 @@ This task must strictly follow the subtasks defined in the `@task-create-or-upda
 
 > **Why is this necessary?**  
 > Monorepo conventions and code integrity depend on all contributors following project rules exactly as described by the relevant Cursor rules. This ensures reliable change tracking, reviewability, and maintains architectural standards.
-
-## 📦 Expected Deliverables
-
-Upon completion of this task, the following should be delivered:
-
-1. **Domain Service File**: `packages/backend-modules/postgres/src/services/{domain-kebab-case}.service.ts`
-2. **CRUD Operations**: Create, Read, Update, Delete, and Find (with pagination) methods for all main entities
-3. **Unit Tests**: Complete test suite in `packages/backend-modules/postgres/src/services/{domain-kebab-case}.test/`
-4. **Domain Documentation**: Verified and complete in `packages/docs/domains.md`
-5. **TypeScript Compilation**: All code builds without errors
-6. **Linting**: All code passes linting rules
-7. **Pull Request**: Created with proper description and linked to this issue
 
 ## 🔗 Related Documentation
 
