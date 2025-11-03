@@ -109,3 +109,100 @@ export const ACTIVITY_CREATED_BY_REQUIRED: ICustomError = {
   status: HttpStatus.BAD_REQUEST,
   description: 'Activity Creator Is Required',
 };
+
+// ============================================================================
+// COURSE ERRORS
+// ============================================================================
+
+export const COURSE_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: 'Course Not Found',
+};
+
+export const COURSE_TITLE_REQUIRED: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Course Title Is Required',
+};
+
+export const COURSE_TITLE_EMPTY: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Course Title Cannot Be Empty',
+};
+
+export const COURSE_INSTRUCTOR_REQUIRED: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Course Instructor Is Required',
+};
+
+export const INSTRUCTOR_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: 'Instructor Not Found',
+};
+
+export const COURSE_INVALID_STATUS_TRANSITION: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Invalid Course Status Transition',
+};
+
+// ============================================================================
+// SECTION ERRORS
+// ============================================================================
+
+export const SECTION_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: 'Section Not Found',
+};
+
+export const SECTION_TITLE_REQUIRED: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Section Title Is Required',
+};
+
+export const SECTION_TITLE_EMPTY: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Section Title Cannot Be Empty',
+};
+
+export const SECTION_COURSE_REQUIRED: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Section Course Is Required',
+};
+
+export const SECTION_ORDER_INDEX_REQUIRED: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Section Order Index Is Required',
+};
+
+export const SECTION_ORDER_INDEX_DUPLICATE: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Section Order Index Already Exists For This Course',
+};
+
+// ============================================================================
+// LESSON ERRORS
+// ============================================================================
+
+export const LESSON_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: 'Lesson Not Found',
+};
+
+export const LESSON_TITLE_REQUIRED: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Lesson Title Is Required',
+};
+
+export const LESSON_TITLE_EMPTY: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Lesson Title Cannot Be Empty',
+};
+
+export const LESSON_SECTION_REQUIRED: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Lesson Section Is Required',
+};
+
+export const LESSON_CONTENT_URL_INVALID: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: 'Lesson Content URL Is Invalid',
+};
