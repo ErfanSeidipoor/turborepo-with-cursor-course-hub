@@ -1,9 +1,9 @@
-import { ObjectLiteral, SelectQueryBuilder } from "typeorm";
+import { ObjectLiteral, SelectQueryBuilder } from 'typeorm';
 
 export const paginate = async <T extends ObjectLiteral>(
   queryBuilder: SelectQueryBuilder<T>,
   limit = 10,
-  page = 1
+  page = 1,
 ): Promise<{
   items: T[];
   meta: {
